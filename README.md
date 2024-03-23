@@ -74,12 +74,12 @@ sudo nano docker-compose.yml
 
 ### Once opened delete the contents and paste in the below. Add in your Lat, Lon, elevation (in M) and TZ where required using this format 
 
-- TZ=${your_input}
-- READSB_LAT=${your_latitude} 
-- READSB_LON=${your_longitude}
-- READSB_ALT=${110}
-- TAR1090_DEFAULTCENTERLAT=${your_latitude}
-- TAR1090_DEFAULTCENTERLON=${your_longitude{
+- TZ=your_input
+- READSB_LAT=your_latitude 
+- READSB_LON=your_longitude
+- READSB_ALT=110
+- TAR1090_DEFAULTCENTERLAT=your_latitude
+- TAR1090_DEFAULTCENTERLON=your_longitude
 
 ```bash
 services:
@@ -98,16 +98,16 @@ services:
       # --------------------------------------------------
       # general parameters:
       - LOGLEVEL=error
-      - TZ=${YOUR TIMEZONE} # enter your timezone using https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+      - TZ=YOUR TIMEZONE # enter your timezone using https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
       # --------------------------------------------------
       # SDR related parameters:
       - READSB_DEVICE_TYPE=rtlsdr
       #
       # --------------------------------------------------
       # readsb/decoder parameters:
-      - READSB_LAT=${FEEDER_LAT} # enter your latitude
-      - READSB_LON=${FEEDER_LONG} # enter your longitude
-      - READSB_ALT=${FEEDER_ALT_M}m # enter your elevation
+      - READSB_LAT=FEEDER_LAT # enter your latitude
+      - READSB_LON=FEEDER_LONG # enter your longitude
+      - READSB_ALT=FEEDER_ALT_Mm # enter your elevation
       - READSB_GAIN=autogain
       - READSB_RX_LOCATION_ACCURACY=2
       - READSB_STATS_RANGE=true
@@ -115,10 +115,10 @@ services:
       # --------------------------------------------------
       # TAR1090 (Map Web Page) parameters:
       - UPDATE_TAR1090=true
-      - TAR1090_DEFAULTCENTERLAT=${FEEDER_LAT} # enter your latitude
-      - TAR1090_DEFAULTCENTERLON=${FEEDER_LONG{ # enter your longitude
+      - TAR1090_DEFAULTCENTERLAT=FEEDER_LAT # enter your latitude
+      - TAR1090_DEFAULTCENTERLON=FEEDER_LONG # enter your longitude
       - TAR1090_MESSAGERATEINTITLE=true
-      - TAR1090_PAGETITLE=${My_DeFli_Feeder}
+      - TAR1090_PAGETITLE=My_DeFli_Feeder
       - TAR1090_PLANECOUNTINTITLE=true
       - TAR1090_ENABLE_AC_DB=true
       - TAR1090_FLIGHTAWARELINKS=false
