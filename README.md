@@ -297,7 +297,7 @@ Make sure to use your bucket name and change the ip_xxxxxxx with the IP address 
 ```bash 
 docker exec -it prometheus sh -c "echo -e \"  - job_name: 'Your_DeFli_Bucket'\n    static_configs:\n      - targets: ['ip_xxxxxxx:9273', 'ip_xxxxxxx:9274']\" >> /etc/prometheus/prometheus.yml"
 docker stop prometheus
-docker compose up -d
+
 ``` 
 
 ### We then need to enter the remote write element in to the docker-compose file 
@@ -325,7 +325,10 @@ y
 
 ```bash 
 docker restart prometheus
-``` 
+```
+```bash
+docker compose up -d
+```
 
 ### That is it! 
 
