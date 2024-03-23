@@ -349,9 +349,7 @@ y
 ```bash 
 docker restart prometheus
 ```
-```bash
-docker compose up -d
-```
+
 
 ### That is it! 
 
