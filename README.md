@@ -295,18 +295,40 @@ docker compose up -d
 Make sure to use your bucket name and change the ip_xxxxxxx with the IP address or hostname (localhost) of the machine where ultrafeeder is running:
 
 ```bash 
-docker exec -it prometheus sh -c "echo -e \"  - job_name: 'Your_DeFli_Bucket'\n    static_configs:\n      - targets: ['ip_xxxxxxx:9273', 'ip_xxxxxxx:9274']\" >> /etc/prometheus/prometheus.yml"
+docker exec -it prometheus sh -c "echo -e \"  - job_name: 'ultrafeeder'\n    static_configs:\n      - targets: ['ip_xxxxxxx:9273', 'ip_xxxxxxx:9274']\" >> /etc/prometheus/prometheus.yml"
 docker stop prometheus
+docker compose up -d
+```
 
-``` 
+### Now navigate to: 
 
-### We then need to enter the remote write element in to the docker-compose file 
+http://you-ip-address:3000/   this is your personal grafana console username:admin password:admin
+
+Click "add your first data source" 
+Click "prometheus" 
+
+Under name enter- ultrafeeder 
+Under URL enter- http://prometheus:9090/ or http://your-ip-address:9090/ 
+
+Click "save and test" 
+
+If you get the green message you can click "build dashboard" 
+
+In the box with title "import via grafana.com" enter 18398 and press load 
+
+Select "ultrafeeder" from the dropdown list 
+
+Click import 
+
+Your dashboard will populate
+
+### We then need to enter the remote write element in to the docker-compose file so you can send metrics to us
 
 ```bash
 sudo nano /opt/grafana/prometheus/config/prometheus.yml
 ``` 
 
-### Enter the following at the bottom of the file. Ensure that the "remote_write" is indented 2 spaces from the left hand margin 
+### Step 1: Change the job_id to "your bucket ID" Step 2: Enter the following at the bottom of the file. Ensure that the "remote_write" is indented 2 spaces from the left hand margin 
 
 ```bash 
 remote_write:
@@ -315,6 +337,7 @@ remote_write:
       username: 1488847
       password: glc_eyJvIjoiMTA4MjgwNiIsIm4iOiJzdGFjay04ODc4MjAtaG0tcmVhZC1kZWZsaS1kb2NrZXIiLCJrIjoiN2NXNjJpMDkyTmpZUWljSDkwT3NOMDh1IiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0=
 ```
+
 ```bash
 ctrl + x
 y
