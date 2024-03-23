@@ -337,3 +337,20 @@ http://dockerhost/?heatmap to see the heatmap for the past 24 hours
 http://dockerhost/?heatmap&realHeat to see a different heatmap for the past 24 hours
 http://dockerhost/?pTracks to see the tracks of all planes for the past 24 hours
 http://dockerhost/graphs1090/ to see performance graphs
+
+### Troubleshooting 
+
+If you get a "permission denied while tring to connect to the docker daemon socket error please use 
+
+```bash
+sudo groupadd docker
+```
+###Replace "username" with your own username this would be "defli" if your command line shows defli@DeFli
+
+```bash
+sudo usermod -aG docker username
+```
+```bash
+newgrp docker
+```
+
