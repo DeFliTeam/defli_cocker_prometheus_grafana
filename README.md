@@ -18,7 +18,7 @@ usbipd list
 
 ### Identify your SDR, it is normally referred to as "bulk interface" note the BUS ID, it typically takes the format of "1-1", "1-2", "1-x" 
 
-### Run command replacing the "4-" with your device BUS ID 
+### Run command replacing the "4-4" with your device BUS ID 
 
 ```bash
 usbipd bind --busid 4-4
@@ -30,7 +30,8 @@ usbipd bind --busid 4-4
 
 ```bash 
 usbipd attach --wsl --busid 4-4
-``` 
+```
+### Note that using WSL will assign you an IP address and this must be used in place of "localhost" in any of the following configuration.
 
 ### From Ubuntu Terminal (Note Ubuntu Users can start from here) 
 
