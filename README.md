@@ -74,12 +74,12 @@ sudo nano docker-compose.yml
 
 ### Once opened delete the contents and paste in the below. Add in your Lat, Lon, elevation (in M) and TZ where required using this format 
 
-- TZ=your_input
-- READSB_LAT=your_latitude 
-- READSB_LON=your_longitude
-- READSB_ALT=110
-- TAR1090_DEFAULTCENTERLAT=your_latitude
-- TAR1090_DEFAULTCENTERLON=your_longitude
+- TZ=${your_input}
+- READSB_LAT=${your_latitude} 
+- READSB_LON=${your_longitude}
+- READSB_ALT=${110}
+- TAR1090_DEFAULTCENTERLAT=${your_latitude}
+- TAR1090_DEFAULTCENTERLON=${your_longitude{
 
 ```bash
 services:
