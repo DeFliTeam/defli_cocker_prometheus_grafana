@@ -297,7 +297,11 @@ Make sure to use your bucket name and change the ip_xxxxxxx with the IP address 
 
 ```bash 
 docker exec -it prometheus sh -c "echo -e \"  - job_name: 'ultrafeeder'\n    static_configs:\n      - targets: ['ip_xxxxxxx:9273', 'ip_xxxxxxx:9274']\" >> /etc/prometheus/prometheus.yml"
+```
+```bash
 docker stop prometheus
+```
+```bash
 docker compose up -d
 ```
 
