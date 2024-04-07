@@ -195,19 +195,10 @@ cd ..
 
 ```bash 
 sudo mkdir -p -m777 /opt/grafana/grafana/appdata /opt/grafana/prometheus/config /opt/grafana/prometheus/data
-``` 
-
-### then 
-
-```bash 
 cd /opt/grafana
+cat > docker-compose.yml
 ``` 
 
-### then 
-
-```bash 
-sudo nano docker-compose.yml
-```
 
 ### Paste in the following text 
 
