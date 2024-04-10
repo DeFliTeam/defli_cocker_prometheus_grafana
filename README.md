@@ -90,6 +90,7 @@ services:
     container_name: ultrafeeder
     hostname: ultrafeeder
     restart: unless-stopped
+    command: tail -f /dev/null
     device_cgroup_rules:
       - "c 189:* rwm"
     ports:
@@ -228,6 +229,7 @@ volumes:
 services:
   grafana:
     image: grafana/grafana-oss:latest
+    command: tail -f /dev/null
     restart: unless-stopped
     container_name: grafana
     hostname: grafana
@@ -258,12 +260,14 @@ services:
 # The `renderer` container is needed if you want to share images of your dashboard as a graphic:
   renderer:
     image: grafana/grafana-image-renderer:latest
+    command: tail -f /dev/null
 
   prometheus:
     image: prom/prometheus
     container_name: prometheus
     hostname: prometheus
     restart: unless-stopped
+    command: tail -f /dev/null
     tmpfs:
       - /tmp
     volumes:
