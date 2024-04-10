@@ -306,7 +306,7 @@ sudo nano prometheus.yml
            # - alertmanager:9093
 
 scrape_configs:
-  - job_name: "ultrafeeder"
+  - job_name: "your_bucket_id"
   static_configs:
     - targets: ["172.17.0.1:9273", "172.17.0.1:9274"]
 
@@ -355,137 +355,17 @@ Click import
 
 Your dashboard will populate 
 
-### If you get a "no data" output then you need to take the following steps 
-
-```bash
-docker ps
-```
-Note down the ID of the container that has an image starting ghcr.io. You just need the numbers and letters. 
-
-```bash
-cd /opt/grafana/prometheus/config/
-```
-```bash
-sudo nano prometheus.yml
-```
-In the "static config" section of the "ultrafeeder" job replace the IP address with the container ID with :9273 and :9274 as postfix e.g. '2hfhf8e848:9273' '2hfhf8e848:9274' 
-```bash
-ctrl + y
-```
-```bash
-y
-```
-```bash
-docker stop prometheus
-```
-```bash
-docker compose up -d
-```
-
-### If this does not resolve the issue then try 
-
-```bash
-cd /opt/grafana/prometheus/config/
-```
-```bash
-sudo nano prometheus.yml
-```
-In the "static config" section of the "ultrafeeder" job replace the IP address with "host.docker.internal" e.g. 'host.docker.internal:9273' 'host.docker.internal:9274'
-```bash
-ctrl + y
-```
-```bash
-y
-```
-```bash
-docker stop prometheus
-```
-```bash
-docker compose up -d
-```
-
-### If this does not resolve the issue then try 
-
-```bash
-cd /opt/grafana/prometheus/config/
-```
-```bash
-sudo nano prometheus.yml
-```
-In the "static config" section of the "ultrafeeder" job replace the IP address with "172.17.0.1" e.g. '172.17.0.1:9273' '172.17.0.1:9274'
-```bash
-ctrl + y
-```
-```bash
-y
-```
-```bash
-docker stop prometheus
-```
-```bash
-docker compose up -d
-```
-### If this does not resolve the issue then try 
-
-```bash
-cd /opt/grafana/prometheus/config/
-```
-```bash
-sudo nano prometheus.yml
-```
-In the "static config" section of the "ultrafeeder" job replace the IP address with "ultrafeeder" e.g. 'ultrafeeder:9273' 'ultrafeeder:9274'
-```bash
-ctrl + y
-```
-```bash
-y
-```
-```bash
-docker stop prometheus
-```
-```bash
-docker compose up -d
-```
-
-### We then need to enter the remote write element in to the docker-compose file so you can send metrics to us
-
-```bash
-sudo nano /opt/grafana/prometheus/config/prometheus.yml
-``` 
-
-### Step 1: Change the job_id to "your bucket ID" Step 2: Enter the following at the bottom of the file. Ensure that the "remote_write" is indented 2 spaces from the left hand margin 
-
-```bash 
-remote_write:
-  - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
-    basic_auth:
-      username: 1488847
-      password: glc_eyJvIjoiMTA4MjgwNiIsIm4iOiJzdGFjay04ODc4MjAtaG0tcmVhZC1kZWZsaS1kb2NrZXIiLCJrIjoiN2NXNjJpMDkyTmpZUWljSDkwT3NOMDh1IiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0=
-```
-
-```bash
-ctrl + x
-y
-```
+To add extra maps from tar1090 please follow these instructions https://github.com/DeFliTeam/defli_quickstart#incorporate-tar1090-and-graphs1090-in-to-grafana
 
 
-### Now run 
-
-```bash 
-docker restart prometheus
-```
 
 
-### That is it! 
 
 ### If all is working you should see outputs here: 
-
-http://dockerhost/ to access the tar1090 web interface.
-http://dockerhost/?replay to see a replay of past data
-http://dockerhost/?heatmap to see the heatmap for the past 24 hours
-http://dockerhost/?heatmap&realHeat to see a different heatmap for the past 24 hours
-http://dockerhost/?pTracks to see the tracks of all planes for the past 24 hours
-http://dockerhost/graphs1090/ to see performance graphs
+http://localhost:8080/ 
+http://localhost:8080/graphs1090/
+http://localhost:9273/metrics/ 
+http://localhost:9090/
 
 ### Troubleshooting 
 
