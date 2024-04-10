@@ -308,7 +308,7 @@ sudo nano prometheus.yml
 scrape_configs:
   - job_name: "ultrafeeder"
   static_configs:
-    - targets: ["localhost:9273", "localhost:9274"]
+    - targets: ["172.17.0.1:9273", "172.17.0.1:9274"]
 
   - job_name: "prometheus"
   static_configs: 
