@@ -287,15 +287,30 @@ docker compose up -d
 ### We will now configure Prometheus 
 
  
-### Prometheus needs to be told where to look for the data from the ultrafeeder. We will create a target prometheus configuration file that does this
+### Prometheus needs to be told where to look for the data from the ultrafeeder. We will create a target prometheus configuration file that does this. 
 
+### First we must determine the IP address of our ultrafeeder service 
+
+```bash
+docker exec -it ultrafeeder /bin/bash
+```
+```bash
+cat /etc/hosts
+```
+This command should produce 7 lines of code. That last line should be an IP address starting "172". Please note this down. 
+
+```bash
+ctrl + d
+```
+### Now we create the config file
 ```bash 
 cd /opt/grafana/prometheus/config/
 ```
 ```bash
 sudo nano prometheus.yml
 ```
-### Paste in the following. If you are not using localhost you will need to change this for your own values 
+
+### Paste in the following. You will need to use your own "172" values in place of ours as well as adding your own bucket id.
 
 ```bash
 # my global config
