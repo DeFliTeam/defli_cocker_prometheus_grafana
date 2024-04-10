@@ -283,11 +283,48 @@ docker compose up -d
 ### We will now configure Prometheus 
 
  
-### Prometheus needs to be told where to look for the data from the ultrafeeder. We will create a target prometheus configuration file that does this, please copy and paste the following. 
-Make sure to use your bucket name and change the ip_xxxxxxx with the IP address or hostname (localhost) of the machine where ultrafeeder is running:
+### Prometheus needs to be told where to look for the data from the ultrafeeder. We will create a target prometheus configuration file that does this
 
 ```bash 
-docker exec -it prometheus sh -c "echo -e \"  - job_name: 'ultrafeeder'\n    static_configs:\n      - targets: ['ip_xxxxxxx:9273', 'ip_xxxxxxx:9274']\" >> /etc/prometheus/prometheus.yml"
+cd /opt/grafana/prometheus/config/
+```
+```bash
+sudo nano prometheus.yml
+```
+### Paste in the following. If you are not using localhost you will need to change this for your own values 
+
+```bash
+# my global config
+  global:
+    scrape_interval: 10s
+    evaluation_interval: 10s
+ # Alertmanager configuration
+ alerting:
+   alertmanagers:
+     - static_configs:
+         - targets:
+           # - alertmanager:9093
+
+scrape_configs:
+  - job_name: "ultrafeeder"
+  static_configs:
+    - targets: ["localhost:9273", "localhost:9274"]
+
+  - job_name: "prometheus"
+  static_configs: 
+    - targets: ["localhost:9090"]
+
+  remote_write:
+  - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
+    basic_auth:
+      username: 1488847
+      password: glc_eyJvIjoiMTA4MjgwNiIsIm4iOiJzdGFjay04ODc4MjAtaG0tcmVhZC1kZWZsaS1kb2NrZXIiLCJrIjoiN2NXNjJpMDkyTmpZUWljSDkwT3NOMDh1IiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0=
+```
+```bash
+ctrl + x
+```
+```bash
+y
 ```
 ```bash
 docker stop prometheus
