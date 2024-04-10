@@ -376,7 +376,15 @@ ctrl + y
 y
 ```
 ```bash
-docker stop prometheus
+sudo reboot
+```
+```bash
+cd /opt/adsb
+```
+```bash
+docker compose up -d
+```
+```bash cd /opt/grafana/
 ```
 ```bash
 docker compose up -d
@@ -397,7 +405,15 @@ ctrl + y
 y
 ```
 ```bash
-docker stop prometheus
+sudo reboot
+```
+```bash
+cd /opt/adsb
+```
+```bash
+docker compose up -d
+```
+```bash cd /opt/grafana/
 ```
 ```bash
 docker compose up -d
