@@ -353,7 +353,77 @@ Select "ultrafeeder" from the dropdown list
 
 Click import 
 
-Your dashboard will populate
+Your dashboard will populate 
+
+### If you get a "no data" output then you need to take the following steps 
+
+```bash
+docker ps
+```
+Note down the ID of the container that has an image starting ghcr.io. You just need the numbers and letters. 
+
+```bash
+cd /opt/grafana/prometheus/config/
+```
+```bash
+sudo nano prometheus.yml
+```
+In the "static config" section of the "ultrafeeder" job replace the IP address with the container ID with :9273 and :9274 as postfix e.g. '2hfhf8e848:9273' '2hfhf8e848:9274' 
+```bash
+ctrl + y
+```
+```bash
+y
+```
+```bash
+docker stop prometheus
+```
+```bash
+docker compose up -d
+```
+### If this does not resolve the issue then try 
+
+```bash
+cd /opt/grafana/prometheus/config/
+```
+```bash
+sudo nano prometheus.yml
+```
+In the "static config" section of the "ultrafeeder" job replace the IP address with "host.docker.internal" e.g. 'host.docker.internal:9273' 'host.docker.internal:9274'
+```bash
+ctrl + y
+```
+```bash
+y
+```
+```bash
+docker stop prometheus
+```
+```bash
+docker compose up -d
+```
+
+### If this does not resolve the issue then try 
+
+```bash
+cd /opt/grafana/prometheus/config/
+```
+```bash
+sudo nano prometheus.yml
+```
+In the "static config" section of the "ultrafeeder" job replace the IP address with "172.17.0.1" e.g. '172.17.0.1:9273' '172.17.0.1:9274'
+```bash
+ctrl + y
+```
+```bash
+y
+```
+```bash
+docker stop prometheus
+```
+```bash
+docker compose up -d
+```
 
 ### We then need to enter the remote write element in to the docker-compose file so you can send metrics to us
 
