@@ -196,7 +196,7 @@ cd ..
 ```bash 
 sudo mkdir -p -m777 /opt/grafana/grafana/appdata /opt/grafana/prometheus/config /opt/grafana/prometheus/data
 cd /opt/grafana
-cat > docker-compose.yml
+sudo nano docker-compose.yml
 ``` 
 
 
@@ -376,20 +376,12 @@ ctrl + y
 y
 ```
 ```bash
-sudo reboot
-```
-```bash
-cd /opt/adsb
+docker stop prometheus
 ```
 ```bash
 docker compose up -d
 ```
-```bash
-cd /opt/grafana/
-```
-```bash
-docker compose up -d
-```
+
 ### If this does not resolve the issue then try 
 
 ```bash
@@ -406,16 +398,7 @@ ctrl + y
 y
 ```
 ```bash
-sudo reboot
-```
-```bash
-cd /opt/adsb
-```
-```bash
-docker compose up -d
-```
-```bash
-cd /opt/grafana/
+docker stop prometheus
 ```
 ```bash
 docker compose up -d
