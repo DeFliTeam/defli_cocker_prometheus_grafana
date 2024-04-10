@@ -425,6 +425,27 @@ docker stop prometheus
 ```bash
 docker compose up -d
 ```
+### If this does not resolve the issue then try 
+
+```bash
+cd /opt/grafana/prometheus/config/
+```
+```bash
+sudo nano prometheus.yml
+```
+In the "static config" section of the "ultrafeeder" job replace the IP address with "ultrafeeder" e.g. 'ultrafeeder:9273' 'ultrafeeder:9274'
+```bash
+ctrl + y
+```
+```bash
+y
+```
+```bash
+docker stop prometheus
+```
+```bash
+docker compose up -d
+```
 
 ### We then need to enter the remote write element in to the docker-compose file so you can send metrics to us
 
