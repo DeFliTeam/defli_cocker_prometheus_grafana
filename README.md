@@ -384,7 +384,8 @@ cd /opt/adsb
 ```bash
 docker compose up -d
 ```
-```bash cd /opt/grafana/
+```bash
+cd /opt/grafana/
 ```
 ```bash
 docker compose up -d
@@ -413,7 +414,8 @@ cd /opt/adsb
 ```bash
 docker compose up -d
 ```
-```bash cd /opt/grafana/
+```bash
+cd /opt/grafana/
 ```
 ```bash
 docker compose up -d
