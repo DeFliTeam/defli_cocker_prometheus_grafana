@@ -395,6 +395,30 @@ docker stop prometheus
 docker compose up -d
 ```
 
+### If you still get no data in Grafana please take the following steps 
+
+```bash
+cd /opt/grafana/prometheus/config/
+```
+```bash
+sudo nano prometheus.yml
+```
+Replace the 172 or 192 IP Address with 172.17.0.1
+
+```bash
+ctrl + x
+```
+```bash
+y
+```
+```bash
+docker stop prometheus
+```
+```bash
+docker compose up -d
+```
+
+
 
 
 
@@ -406,6 +430,39 @@ http://localhost:9273/metrics/
 http://localhost:9090/
 
 ### Troubleshooting 
+
+The best way to troubleshoot is to navigate to: 
+
+http://localhost:9090/ or http://your-ip-address:9090/ 
+
+Click on "Status" and then "targets" 
+
+Look for the error codes: 
+
+If you see "context deadline passed" then take the following steps 
+
+```bash
+cd /opt/grafana/prometheus/config/
+```
+```bash
+sudo nano prometheus.yml
+```
+At the top of the file you will see "scrape_interval:  10s" change the "10" to "120"
+```bash
+ctrl + x
+```
+```bash
+y
+```
+```bash
+docker stop prometheus
+```
+```bash
+docker compose up -d
+```
+
+If you get an error message saying "failed to connect" or "permission denied" then you are using the wrong IP address, switch to one of the other suggest 172 or 192 addresses in the prometheus file
+
 
 If you get a "permission denied while tring to connect to the docker daemon socket error please use 
 
