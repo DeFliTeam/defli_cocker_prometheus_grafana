@@ -299,36 +299,22 @@ This command should produce 7 lines of code. That last line should be an IP addr
 ctrl + d
 ```
 ### Now we create the config file
+
 ```bash 
+docker exec -it prometheus sh -c "echo -e \"  - job_name: 'ultrafeeder'\n    static_configs:\n      - targets: ['172.17.0.1:9273', '172.17.0.1:9274']\" >> /etc/prometheus/prometheus.yml"
+docker stop prometheus
+docker compose up -d
+```
+Now add the remote write 
+
+```bash
 cd /opt/grafana/prometheus/config/
 ```
 ```bash
 sudo nano prometheus.yml
 ```
-
-### Paste in the following. You will need to use your own "172" values in place of ours as well as adding your own bucket id.
-
+Paste the below in to the bottom of the file
 ```bash
-# my global config
-  global:
-    scrape_interval: 10s
-    evaluation_interval: 10s
- # Alertmanager configuration
- alerting:
-   alertmanagers:
-     - static_configs:
-         - targets:
-           # - alertmanager:9093
-
-scrape_configs:
-  - job_name: "your_bucket_id"
-  static_configs:
-    - targets: ["172.17.0.1:9273", "172.17.0.1:9274"]
-
-  - job_name: "prometheus"
-  static_configs: 
-    - targets: ["localhost:9090"]
-
   remote_write:
   - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
     basic_auth:
