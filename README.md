@@ -184,7 +184,7 @@ y
 ### Start the container using 
 
 ```bash 
-docker-compose up -d ultrafeeder
+docker compose up -d ultrafeeder
 ``` 
 
 ### Back on the ubuntu command line run this command to create a grafana directory 
