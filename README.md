@@ -298,7 +298,8 @@ This command should produce 7 lines of code. That last line should be an IP addr
 ```bash
 ctrl + d
 ```
-### Now we create the config file
+### Now we create the config file 
+Make sure to use your own 172 IP address.
 
 ```bash 
 docker exec -it prometheus sh -c "echo -e \"  - job_name: 'ultrafeeder'\n    static_configs:\n      - targets: ['172.17.0.1:9273', '172.17.0.1:9274']\" >> /etc/prometheus/prometheus.yml"
