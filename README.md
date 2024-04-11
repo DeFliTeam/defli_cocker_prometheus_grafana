@@ -376,6 +376,29 @@ Your dashboard will populate
 
 To add extra maps from tar1090 please follow these instructions https://github.com/DeFliTeam/defli_quickstart#incorporate-tar1090-and-graphs1090-in-to-grafana
 
+### If you get a no data message on Grafana please take the following steps 
+
+```bash
+cd /opt/grafana/prometheus/config/
+```
+```bash
+sudo nano prometheus.yml
+```
+Replace the 172 IP Address with your device IP address (likely starting 192)
+
+```bash
+ctrl + x
+```
+```bash
+y
+```
+```bash
+docker stop prometheus
+```
+```bash
+docker compuse up -d
+```
+
 
 
 
