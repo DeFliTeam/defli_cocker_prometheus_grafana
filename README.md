@@ -396,7 +396,7 @@ y
 docker stop prometheus
 ```
 ```bash
-docker compuse up -d
+docker compose up -d
 ```
 
 
