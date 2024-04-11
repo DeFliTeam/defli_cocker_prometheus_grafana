@@ -285,21 +285,9 @@ docker compose up -d
  
 ### Prometheus needs to be told where to look for the data from the ultrafeeder. We will create a target prometheus configuration file that does this. 
 
-### First we must determine the IP address of our ultrafeeder service 
 
-```bash
-docker exec -it ultrafeeder /bin/bash
-```
-```bash
-cat /etc/hosts
-```
-This command should produce 7 lines of code. That last line should be an IP address starting "172". Please note this down. 
-
-```bash
-ctrl + d
-```
 ### Now we create the config file 
-Make sure to use your own 172 IP address.
+Make sure to use the IP address of the machine running ultrafeeder
 
 ```bash 
 docker exec -it prometheus sh -c "echo -e \"  - job_name: 'ultrafeeder'\n    static_configs:\n      - targets: ['172.17.0.1:9273', '172.17.0.1:9274']\" >> /etc/prometheus/prometheus.yml"
@@ -335,9 +323,24 @@ docker stop prometheus
 docker compose up -d
 ```
 
+### Now lookup your docker host IP 
+
+
+```bash
+docker exec -it grafana /bin/bash
+```
+```bash
+cat /etc/hosts
+```
+This command should produce 7 lines of code. That last line should be an IP address starting "172". Please note this down. 
+
+```bash
+ctrl + d
+```
+
 ### Now navigate to: 
 
-http://you-ip-address:3000/   this is your personal grafana console username:admin password:admin
+http://your-docker-ip:3000/   this is your personal grafana console username:admin password:admin
 
 Click "add your first data source" 
 Click "prometheus" 
