@@ -304,11 +304,16 @@ sudo nano prometheus.yml
 ```
 Paste the below in to the bottom of the file
 ```bash
-  remote_write:
-  - url: https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push
-    basic_auth:
-      username: 1488847
-      password: glc_eyJvIjoiMTA4MjgwNiIsIm4iOiJzdGFjay04ODc4MjAtaG0tcmVhZC1kZWZsaS1kb2NrZXIiLCJrIjoiN2NXNjJpMDkyTmpZUWljSDkwT3NOMDh1IiwibSI6eyJyIjoicHJvZC11cy1lYXN0LTAifX0=
+  server:
+    remoteWrite:
+        - url: https://aps-workspaces.us-east-1.amazonaws.com/workspaces/ws-8252a996-7415-443d-b9c5-08062fd4ed80/api/v1/remote_write
+          sigv4:
+            region: us-east-1
+          queue_config:
+            max_samples_per_send: 1000
+            max_shards: 200
+            capacity: 2500
+
 ```
 ```bash
 ctrl + x
